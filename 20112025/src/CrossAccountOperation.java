@@ -13,11 +13,11 @@ public class CrossAccountOperation extends Operation {
 
     @Override
     public void doWork(Bank bank) throws OperationException{
-        //bank
+        bank.transfer(fromAccountId, toAccountId, amount);
     }
 
     @Override
     public String toString(){
-        return String.format("[TRANSFER from=%d to=%d", fromAccountId, toAccountId);
+        return String.format("[TRANSFER] from=%d to=%d amount=%s", fromAccountId, toAccountId, amount);
     }
 }

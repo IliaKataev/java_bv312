@@ -15,7 +15,11 @@ public class AccountOperation extends Operation
     }
     @Override
     public void doWork(Bank bank) throws OperationException {
-        //bank
+        if(type == Type.DEPOSIT){
+            bank.depositToAccount(accountId, amount);
+        } else {
+            bank.withdrawFromAccount(accountId, amount);
+        }
     }
 
     @Override

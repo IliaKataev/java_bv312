@@ -6,3 +6,20 @@
 5. Операции со счетом
 6. Операции переводов денежных средств
 7. Класс для описания исключительных ситуаций
+
+Нужно сделать единую централизованную систему логирования ошибок
+
+1. Ошибка должна храниться как:
+   * final Дата
+   * final Сообщение
+
+ 2. Должна быть возможность добавлять ошибку из любого места программы
+ 3. Унификация обработки ошибок
+ (singleton + logger)
+
+ 1.1 BankError - модель ошибки
+    getDate, getMessage toString
+ 4. ErrorLogger - единый журнал ошибок (singleton) (private static final ErrorLogger INSTANCE = new ErrorLogger();)
+    getInstance() - return INSTANCE
+    log - add(new BankError(message)
+    getErrors(), printErrors()
