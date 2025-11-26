@@ -1,5 +1,4 @@
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 import java.util.*;
@@ -12,6 +11,37 @@ import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
+
+        List<Fish> fishes = new ArrayList<>();
+        fishes.add(new Fish("Язь", 2.8, 33, 500.0));
+        fishes.add(new Fish("Щука", 35, 100, 12250.0));
+        fishes.add(new Fish("Бонито", 5.5, 75, 962.0));
+        fishes.add(new Fish("Окунь", 3.1, 50, 2131.0));
+
+//        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("fishes.dat"))){
+//            List<Fish> newFishes = (List<Fish>)in.readObject();
+//
+//            for(Fish f : newFishes){
+//                System.out.println(f);
+//            }
+//        } catch(IOException | ClassNotFoundException e){
+//            e.printStackTrace();
+//        }
+
+        try(BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("fishes.txt"), "UTF-8"))) {
+            for (Fish f: fishes){
+                writer.write(f.getName() + ";" + f.getWeight() + ";" + f.getLength() + ";" + f.getPrice());
+                writer.newLine();
+
+            }
+        } catch (IOException ex){
+            ex.printStackTrace();
+        }
+
+    }
+
+
+    public static void junk(){
         String fileName = "Monday.txt";
         String fullName = "";
         String dirName = System.getProperty("user.dir");
@@ -34,8 +64,9 @@ public class Main {
         String dirname = dirName + "/cool/nice/dir";
         File d = new File(dirname);
         d.mkdirs();
-
-
+        //Байтовый ввод/вывод (fileinput fileoutput, bytearrayinput bytearrayoutput,)
+        //Символный ввод вывод (filereader filiwriter, System.in, System.out)
+        //Сереализация (2 интерфейса)
     }
 
     public static void fishing(){

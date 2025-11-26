@@ -1,4 +1,8 @@
-public class Fish {
+import java.io.Serializable;
+
+public class Fish implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     private String name;
     private double weight;
     private int length; //см
