@@ -1,0 +1,5 @@
+In general, whenever I have a "where is the JVM looking for this file" type of question, I launch the excellent Microsoft utility Procmon. Of course, this only works if you're developing under Windows. Procmon allows you to set filters on many System events, such as file I/O.
+
+This lets you do things like monitor all I/O coming from application whose name you specify, e.g. javaw.exe. You can add path filters, e.g. include all files with names ending in ".properties". It shows exactly where, on the file system, the JVM is looking for I/O matching your filter.
+
+Here's an example of setting filters. Here I'm looking for executables named javaw.exe and any file whose name ends with ".xml".
