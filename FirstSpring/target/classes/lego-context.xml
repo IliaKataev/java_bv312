@@ -1,0 +1,7 @@
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+
+<!--<bean id="city" class="com.example.domain.City">-->
+
+<!--    <constructor-arg value="8000"/>-->
+<!--    <constructor-arg value="15"/>-->
+<!--</bean>-->

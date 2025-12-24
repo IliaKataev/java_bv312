@@ -15,7 +15,7 @@ public class CityService {
     }
 
     public void buildHouse(){
-        repo.getCity().build(new House());
+        repo.buildHouse();
     }
 
     public City getCityState(){

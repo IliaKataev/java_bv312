@@ -7,13 +7,17 @@ import java.util.List;
 
 public class City {
 
-    private final BrickStock stock;
+    private BrickStock stock;
     private final List<Building> buildings = new ArrayList<>();
-    private final int maxBuildings;
+    private int maxBuildings;
 
     public City(int stock, int maxBuildings) {
         this.stock = new BrickStock(stock);
         this.maxBuildings = maxBuildings;
+    }
+
+    public City(){
+
     }
 
     public void build(Building building){

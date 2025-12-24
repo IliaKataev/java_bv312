@@ -2,10 +2,8 @@ package com.example.domain.controller;
 
 import com.example.domain.City;
 import com.example.domain.service.CityService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/city")
@@ -18,12 +16,16 @@ public class CityController {
     }
 
     @PostMapping("/build/house")
-    public void buildHouse(){
+    public String buildHouse(){
         service.buildHouse();
+        return "redirect:/city";
     }
 
     @GetMapping
-    public City getCity(){
-        return service.getCityState();
+    public String cityPage(Model model){
+        City city = service.getCityState();
+        model.addAttribute("city", city);
+        model.addAttribute("buildings", city.getBuildings());
+        return "city.html";
     }
 }
