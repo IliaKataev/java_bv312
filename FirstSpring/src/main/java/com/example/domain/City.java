@@ -1,6 +1,7 @@
 package com.example.domain;
 
 import com.example.domain.Buildings.Building;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,14 +28,21 @@ public class City {
         buildings.add(building);
     }
 
-    public int getTotalBuilding(){
+    public int getMaxBuildings(){
         return buildings.size();
     }
-    public int getRemainBricks(){
+
+    public int getStock(){
         return stock.getAvailableBricks();
+    }
+
+    @JsonIgnore
+    public BrickStock getFullStock(){
+        return stock;
     }
 
     public List<Building> getBuildings(){
         return buildings;
     }
+
 }

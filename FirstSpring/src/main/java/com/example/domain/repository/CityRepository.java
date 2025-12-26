@@ -14,9 +14,7 @@ import java.nio.file.Paths;
 public class CityRepository {
 
     private static final Path FILE = Paths.get("src/main/resources/city-data.json");
-
     private final ObjectMapper mapper;
-
     private City city;
 
 
@@ -30,10 +28,12 @@ public class CityRepository {
                 .writeValue(FILE.toFile(), city);
     }
 
-    public void buildHouse(){
-        city.build(new House());
-        save();
-    }
+    //private load()
+
+//    public void buildHouse(){
+//        city.build(new House());
+//        save();
+//    }
 
     public City getCity(){
         return city;

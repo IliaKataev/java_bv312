@@ -8,6 +8,9 @@ public class BrickStock {
         this.availableBricks = availableBricks;
     }
 
+    public BrickStock() {
+    }
+
     public int getAvailableBricks() {
         return availableBricks;
     }
@@ -21,5 +24,9 @@ public class BrickStock {
             throw new IllegalStateException("Недостаточно кубиков");
         }
         availableBricks -= amount;
+    }
+
+    public void setAvailableBricks(int availableBricks) {
+        this.availableBricks = availableBricks;
     }
 }

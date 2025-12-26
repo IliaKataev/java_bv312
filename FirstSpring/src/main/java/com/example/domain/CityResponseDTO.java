@@ -2,30 +2,30 @@ package com.example.domain;
 import java.util.List;
 
 public class CityResponseDTO {
-    private int totalBuildings;
-    private int remainingBricks;
+    private int maxBuildings;
+    private int stock;
     private List<String> buildings;
 
     public CityResponseDTO(int totalBuildings, int remainingBricks, List<String> buildings) {
-        this.totalBuildings = totalBuildings;
-        this.remainingBricks = remainingBricks;
+        this.maxBuildings = totalBuildings;
+        this.stock = remainingBricks;
         this.buildings = buildings;
     }
 
-    public int getTotalBuildings() {
-        return totalBuildings;
+    public int getMaxBuildings() {
+        return maxBuildings;
     }
 
-    public void setTotalBuildings(int totalBuildings) {
-        this.totalBuildings = totalBuildings;
+    public void setMaxBuildings(int maxBuildings) {
+        this.maxBuildings = maxBuildings;
     }
 
-    public int getRemainingBricks() {
-        return remainingBricks;
+    public int getStock() {
+        return stock;
     }
 
-    public void setRemainingBricks(int remainingBricks) {
-        this.remainingBricks = remainingBricks;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     public List<String> getBuildings() {

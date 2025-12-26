@@ -1,5 +1,35 @@
 {
-  "stock" : 5555,
+  "stock" : 91602,
   "maxBuildings" : 10,
-  "buildings": []
+  "buildings" : [ {
+    "name" : "House",
+    "requiredBricks" : 300
+  }, {
+    "name" : "School",
+    "requiredBricks" : 800
+  }, {
+    "name" : "Police Station",
+    "requiredBricks" : 600
+  }, {
+    "name" : "Police Station",
+    "requiredBricks" : 600
+  }, {
+    "name" : "School",
+    "requiredBricks" : 800
+  }, {
+    "name" : "House",
+    "requiredBricks" : 300
+  }, {
+    "name" : "Police Station",
+    "requiredBricks" : 600
+  }, {
+    "name" : "School",
+    "requiredBricks" : 800
+  }, {
+    "name" : "House",
+    "requiredBricks" : 300
+  }, {
+    "name" : "House",
+    "requiredBricks" : 300
+  } ]
 }

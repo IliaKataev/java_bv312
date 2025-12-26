@@ -8,8 +8,8 @@
 
 <h2>Город</h2>
 
-<p>Осталось кубиков: <span th:text="${city.remainBricks}">0</span></p>
-<p>Количество зданий: <span th:text="${city.totalBuilding}">0</span></p>
+<p>Осталось кубиков: <span th:text="${city.stock}">0</span></p>
+<p>Количество зданий: <span th:text="${city.maxBuildings}">0</span></p>
 
 <h3>Постройки</h3>
 <ul>
@@ -17,11 +17,19 @@
 </ul>
 
 <h3>Построить</h3>
-<form th:action="@{/city/build}" method="post">
+<form th:action="@{/api/city/build}" method="get">
     <button type="submit" name="type" value="house">House</button>
     <button type="submit" name="type" value="school">School</button>
     <button type="submit" name="type" value="police">Police</button>
 </form>
 
+<h3>Добавить кубики</h3>
+<form th:action="@{/api/city/addBricks}" method="get">
+    <input type="number" name="amount" placeholder="Количество кубиков..." required>
+    <button type="submit" >Добавить</button>
+</form>
+
+
+<p th:if="${error}" th:text="${error}" style="color:red"></p>
 </body>
 </html>
