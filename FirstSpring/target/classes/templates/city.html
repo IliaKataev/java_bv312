@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>City</title>
+</head>
+<body>
+
+<h2>Город</h2>
+
+<p>Осталось кубиков: <span th:text="${city.remainBricks}">0</span></p>
+<p>Количество зданий: <span th:text="${city.totalBuilding}">0</span></p>
+
+<h3>Постройки</h3>
+<ul>
+    <li th:each="b : ${buildings}" th:text="${b.name}">Building</li>
+</ul>
+
+<h3>Построить</h3>
+<form th:action="@{/city/build}" method="post">
+    <button type="submit" name="type" value="house">House</button>
+    <button type="submit" name="type" value="school">School</button>
+    <button type="submit" name="type" value="police">Police</button>
+</form>
+
+</body>
+</html>
