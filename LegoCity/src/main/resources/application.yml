@@ -1,0 +1,15 @@
+# Source - https://stackoverflow.com/a
+# Posted by Zoltan, modified by community. See post 'Timeline' for change history
+# Retrieved 2026-01-12, License - CC BY-SA 3.0
+
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/lego_city
+    username: postgres
+    password: 1111
+    driverClassName: org.postgresql.Driver
