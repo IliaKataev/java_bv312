@@ -1,9 +1,15 @@
 package com.example.LegoCity.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "missions")
+@Getter @Setter
 public class Mission {
 
     @Id
@@ -14,4 +20,7 @@ public class Mission {
     private int rewardCubes;
     private int rewardMaxBuildings;
 
+    @OneToMany(mappedBy = "mission", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("mission")
+    private List<MissionRequirements> requirementsList;
 }
