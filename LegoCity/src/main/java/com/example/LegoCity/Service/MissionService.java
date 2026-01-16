@@ -44,7 +44,7 @@ public class MissionService {
         mission.setCompleted(true);
         MR.save(mission);
 
-        CityState city = CSR.findAll().get(0);
+        CityState city = CSR.findAll().getFirst();
         city.setCubes(city.getCubes() + mission.getRewardCubes());
         city.setMaxBuildings(city.getMaxBuildings() + mission.getRewardMaxBuildings());
 
@@ -55,7 +55,7 @@ public class MissionService {
     }
 
     private boolean isMissionCompleted(Mission mission){
-        List<MissionRequirements> requirements = (List<MissionRequirements>)MRS.findByMission(mission);
+        List<MissionRequirements> requirements = MRS.findAllByMission(mission);
 
         for(MissionRequirements req : requirements){
             long count = buildingRepository.countByType(req.getBuildingType());

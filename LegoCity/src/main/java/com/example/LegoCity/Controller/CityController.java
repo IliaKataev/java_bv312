@@ -1,9 +1,12 @@
 package com.example.LegoCity.Controller;
 
+import com.example.LegoCity.Models.Building;
 import com.example.LegoCity.Models.CityState;
 import com.example.LegoCity.Service.CityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/city")
@@ -42,5 +45,13 @@ public class CityController {
     @GetMapping("/state")
     public CityState getState() {
         return cityService.getCityState();
+    }
+
+    /**
+     * Получить список всех построенных зданий
+     */
+    @GetMapping("/buildings")
+    public List<Building> getBuildings() {
+        return cityService.getAllBuildings();
     }
 }

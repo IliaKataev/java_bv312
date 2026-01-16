@@ -1,0 +1,25 @@
+body{
+    background: linear-gradient(135deg, #74ebd5, #9face6);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.city-card {
+    background: white;
+    border-radius: 15px;
+}
+
+.building-card{
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+.building-card img {
+    width: 160px;
+    margin-bottom: 10px;
+}
+
+.mission-done{
+    background: #d4edda;
+}

@@ -5,12 +5,14 @@ import com.example.LegoCity.Models.BuildingType;
 import com.example.LegoCity.Models.CityState;
 import com.example.LegoCity.Repository.BuildingRepository;
 import com.example.LegoCity.Repository.BuildingTypeRepository;
+import com.example.LegoCity.Repository.CityHistoryRepository;
 import com.example.LegoCity.Repository.CityStateRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +24,8 @@ public class CityService {
     private final CityStateRepository CSR;
     private final HistoryService HS;
     private final MissionService MS;
+
+    private final CityHistoryRepository cityHistoryRepository;
 
     public void build(Long buildingTypeId){
 
@@ -77,6 +81,24 @@ public class CityService {
                 .stream()
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("CityState не найден"));
+    }
+
+    public List<Building> getAllBuildings() {
+        return BR.findAll();
+    }
+
+    public void destroy(Long buildingId) {
+        Building building = BR.findById(buildingId).orElseThrow(() -> new IllegalArgumentException("Здание не найдено"));
+
+        CityState city = getCityState();
+
+        int refund = building.getType().getCubeCost() / 2;
+        city.setCubes(city.getCubes() + refund);
+
+        BR.delete(building);
+        CSR.save(city);
+
+        HS.log("DESTROY", building.getType().getName() + ". Refund: " + refund);
     }
     //Для каждой из моделек нужно сделать геттер и сеттер + Join в некоторых
 }
