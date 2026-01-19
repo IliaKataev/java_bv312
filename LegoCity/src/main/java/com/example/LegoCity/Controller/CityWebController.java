@@ -6,12 +6,10 @@ import com.example.LegoCity.Service.MissionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/city")
 @RequiredArgsConstructor
 public class CityWebController {
 
@@ -19,25 +17,24 @@ public class CityWebController {
     private final MissionService missionService;
     private final BuildingTypeRepository buildingTypes;
 
-    @GetMapping("/")
+    @GetMapping
     public String city(Model model){
         model.addAttribute("city", cityService.getCityState());
         model.addAttribute("buildings", cityService.getAllBuildings());
         model.addAttribute("missions", missionService.getAllMissions());
         model.addAttribute("types", buildingTypes.findAll());
-
         return "city";
     }
 
-    @PostMapping("/build/{id}")
-    public String build(@PathVariable("id") Long typeId){
-        cityService.build(typeId);
+    @PostMapping("/build")
+    public String build(@RequestParam Long id){
+        cityService.build(id);
         return "redirect:/city";
     }
 
     @PostMapping("/destroy")
-    public String destroy(@RequestParam Long typeId){
-        cityService.destroy(typeId);
+    public String destroy(@RequestParam Long id){
+        cityService.destroy(id);
         return "redirect:/city";
     }
 }

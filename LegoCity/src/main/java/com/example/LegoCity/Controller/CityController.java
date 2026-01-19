@@ -18,9 +18,14 @@ public class CityController {
     /**
      * Построить здание по типу
      */
-    @PostMapping("/build/{typeId}")
-    public void build(@PathVariable Long typeId) {
+    @PostMapping("/build")
+    public void build(@RequestParam Long typeId) {
         cityService.build(typeId);
+    }
+    @PostMapping("/destroy")
+    public String destroy(@RequestParam Long typeId){
+        cityService.destroy(typeId);
+        return "redirect:/city";
     }
 
     /**

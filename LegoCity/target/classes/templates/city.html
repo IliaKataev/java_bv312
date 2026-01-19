@@ -12,64 +12,76 @@
 
 <div class="container my-5">
     <h1 class="text-center mb-4">Lego City</h1>
+    <div class="layout">
 
-    <!-- CITY -->
-    <div class="card city-card mb-4">
-        <div class="card-body">
-            <h4>Состояние города</h4>
-            <p>Кубики: <b th:text="${city.cubes}"></b></p>
-            <p>Лимит зданий: <b th:text="${city.maxBuildings}"></b></p>
-        </div>
-    </div>
+        <!-- MISSIONS -->
+        <aside class="missions-sidebar">
+            <h4 class="mb-3">Миссии</h4>
 
-    <!-- BUILDINGS -->
+            <div class="card mb2"
+                 th:each="m : ${missions}"
+                 th:classappend="${m.completed} ? 'mission-done'">
 
-    <h4 class="mb-3">Построенные здания</h4>
+                <div class="card-body">
+                    <b>Миссия №<span th:text="${m.id}"></span></b>
+                    <ul>
+                        <li th:each="r : ${m.requirementsList}">
+                            Построить <b th:text="${r.buildingType.name}"></b>
+                            x <b th:text="${r.requiredCount}"></b>
+                        </li>
+                    </ul>
 
-    <div class="row">
-        <div class="col-md-3 mb-3"
-        th:each="b : ${buildings}">
-            <div class="building-card">
-                <img th:src="@{/icons/{icon}(icon=${b.type.icon})}" alt="#">
-                <div th:text="${b.type.name}"></div>
-                <div th:text="${#temporals.format(b.builtAt, 'dd.MM.yyyy HH:mm')}"></div>
+                    Награда:
+                    <span th:text="${m.rewardCubes}"></span> 🧱,
+                    <span th:text="${m.rewardMaxBuildings}"></span> 🏠
+                </div>
+
+            </div>
+        </aside>
+
+        <!-- CITY -->
+        <div class="city-main">
+            <div class="card city-card mb-4">
+                <div class="card-body">
+                    <h4>Состояние города</h4>
+                    <p>Кубики: <b th:text="${city.cubes}"></b></p>
+                    <p>Лимит зданий: <b th:text="${city.maxBuildings}"></b></p>
+                </div>
             </div>
 
-        </div>
+            <!-- BUILDINGS -->
 
-        <div class="buildings-panel">
-            <div th:each="t : ${types}" class="building-card">
-                <img th:src="@{/icons/{icon}(icon=${t.icon})}" alt="#">
-                <div th:text="${t.name}"></div>
-                <p>Цена: <span th:text="${t.cubeCost}"></span> 🧱</p>
 
-                <form th:action="@{/city/build/(Id=${t.id})}" method="post">
-                    <input type="hidden" name="Id" th:value="${t.id}">
-                    <button type="submit">Build</button>
-                </form>
+
+            <div class="row">
+                <h4 class="mb-3">Построенные здания</h4>
+                <div class="col-md-3 mb-3"
+                     th:each="b : ${buildings}">
+                    <div class="building-card">
+                        <img th:src="@{/icons/{icon}(icon=${b.type.icon})}" alt="#">
+                        <div th:text="${b.type.name}"></div>
+                        <div th:text="${#temporals.format(b.builtAt, 'dd.MM.yyyy HH:mm')}"></div>
+                        <form th:action="@{/city/destroy}" method="post">
+                            <input type="hidden" name="id" th:value="${b.id}">
+                            <button type="submit">Destroy</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="buildings-panel">
+                    <div th:each="t : ${types}" class="building-card">
+                        <img th:src="@{/icons/{icon}(icon=${t.icon})}" alt="#">
+                        <div th:text="${t.name}"></div>
+                        <p>Цена: <span th:text="${t.cubeCost}"></span> 🧱</p>
+
+                        <form th:action="@{/city/build}" method="post">
+                            <input type="hidden" name="id" th:value="${t.id}">
+                            <button type="submit">Build</button>
+                        </form>
+
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-
-    <!-- MISSIONS -->
-    <h4 class="mt-5 mb-3">Миссии</h4>
-
-    <div class="card mb2"
-    th:each="m : ${missions}"
-    th:classappend="${m.completed} ? 'mission-done'">
-
-        <div class="card-body">
-            <b>Миссия №<span th:text="${m.id}"></span></b>
-            <ul>
-                <li th:each="r : ${m.requirementsList}">
-                    Построить <b th:text="${r.buildingType.name}"></b>
-                    x <b th:text="${r.requiredCount}"></b>
-                </li>
-            </ul>
-
-            Награда:
-            <span th:text="${m.rewardCubes}"></span> 🧱,
-            <span th:text="${m.rewardMaxBuildings}"></span> 🏠
         </div>
 
     </div>
