@@ -43,7 +43,7 @@
                 <div th:text="${t.name}"></div>
                 <p>Цена: <span th:text="${t.cubeCost}"></span> 🧱</p>
 
-                <form th:action="@{/city/build/(Id=${t.id})}" method="post">
+                <form th:action="@{/city/build/(id=${t.id})}" method="post">
                     <input type="hidden" name="Id" th:value="${t.id}">
                     <button type="submit">Build</button>
                 </form>
