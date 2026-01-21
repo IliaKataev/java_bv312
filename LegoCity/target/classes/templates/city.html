@@ -10,8 +10,18 @@
 
 <body>
 
-<div class="container my-5">
-    <h1 class="text-center mb-4">Lego City</h1>
+<div class="container my-2">
+    <header class="lego-header mb-4">
+        <div class="lego-header-content">
+            <img th:src="@{/icons/img.png}" class="lego-logo" alt="logo">
+            <div>
+                <h1 class="lego-title">LEGO CITY</h1>
+                <div class="lego-subtitle">Строй, Расширяй, Выполняй</div>
+            </div>
+        </div>
+
+    </header>
+    <!--h1 class="text-center mb-4">Lego City</h1-->
     <div class="layout">
 
         <!-- MISSIONS -->
@@ -55,18 +65,21 @@
 
             <div class="row">
                 <h4 class="mb-3">Построенные здания</h4>
-                <div class="col-md-3 mb-3"
-                     th:each="b : ${buildings}">
-                    <div class="building-card">
-                        <img th:src="@{/icons/{icon}(icon=${b.type.icon})}" alt="#">
-                        <div th:text="${b.type.name}"></div>
-                        <div th:text="${#temporals.format(b.builtAt, 'dd.MM.yyyy HH:mm')}"></div>
-                        <form th:action="@{/city/destroy}" method="post">
-                            <input type="hidden" name="id" th:value="${b.id}">
-                            <button type="submit">Destroy</button>
-                        </form>
+                <div class="buildings-panel">
+                    <div class="col-md-3 mb-3"
+                         th:each="b : ${buildings}">
+                        <div class="building-card">
+                            <img th:src="@{/icons/{icon}(icon=${b.type.icon})}" alt="#">
+                            <div th:text="${b.type.name}"></div>
+                            <div th:text="${#temporals.format(b.builtAt, 'dd.MM.yyyy HH:mm')}"></div>
+                            <form th:action="@{/city/destroy}" method="post">
+                                <input type="hidden" name="id" th:value="${b.id}">
+                                <button type="submit">Destroy</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
+
 
                 <div class="buildings-panel">
                     <div th:each="t : ${types}" class="building-card">
