@@ -1,5 +1,6 @@
 package com.example.LegoCity.Config;
 
+import com.example.LegoCity.Controller.AuthSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,7 +9,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.*;
+
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -21,7 +22,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain filterChain(HttpSecurity http, AuthSuccessHandler successHandler) throws Exception{
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
@@ -30,8 +31,9 @@ public class SecurityConfig {
                     .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                .loginPage("/login")
-                .permitAll()
+                    .loginPage("/login")
+                        .successHandler(successHandler)
+                    .permitAll()
                 )
                 .logout(LogoutConfigurer::permitAll);
         return http.build();

@@ -1,18 +1,17 @@
 package com.example.LegoCity.Service;
 
-import com.example.LegoCity.Models.CityState;
-import com.example.LegoCity.Models.Mission;
-import com.example.LegoCity.Models.MissionRequirements;
-import com.example.LegoCity.Repository.BuildingRepository;
-import com.example.LegoCity.Repository.CityStateRepository;
-import com.example.LegoCity.Repository.MissionRepository;
-import com.example.LegoCity.Repository.MissionRequirementsRepository;
+import com.example.LegoCity.Models.*;
+import com.example.LegoCity.Repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.webmvc.core.service.RequestService;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 @RequiredArgsConstructor
@@ -22,9 +21,13 @@ public class MissionService {
     private final MissionRequirementsRepository MRS;
     private final MissionRepository MR;
     private final CityStateRepository CSR;
+    private final UserRepository UR;
+    private final BuildingTypeRepository BTR;
 
     private final BuildingRepository buildingRepository;
     private final HistoryService HS;
+
+    private final RequestService requestBuilder;
 
     public void checkMission(){
         List<Mission> missions = MR.findAll();
@@ -69,5 +72,58 @@ public class MissionService {
 
     public List<Mission> getAllMissions() {
         return MR.findAll();
+    }
+
+    public void resetAllUserMissions() {
+        List<User> users = UR.findAll();
+        for (User user : users){
+            user.getMissions().clear();
+
+            List<Mission> newMissions = generateRandomMissions(user);
+
+            for(Mission mission : newMissions){
+                mission.setUser(user);
+            }
+
+            user.getMissions().addAll(newMissions);
+        }
+    }
+
+    private List<Mission> generateRandomMissions(User user) {
+        List<Mission> missions = new ArrayList<>();
+        for(int i = 0; i <= 4; i++){
+            Mission mission = new Mission();
+            mission.setCompleted(false);
+            mission.setRewardCubes(random(5,20));
+            mission.setRewardMaxBuildings(random(1,3));
+            mission.setUser(user);
+
+            List<MissionRequirements> requirements = generateRequirements(mission);
+
+            mission.setRequirementsList(requirements);
+            missions.add(mission);
+        }
+        return missions;
+    }
+
+    private List<MissionRequirements> generateRequirements(Mission mission) {
+        List<BuildingType> types = BTR.findAll();
+        Collections.shuffle(types);
+
+        int requirementsCount = random(1,3);
+        List<MissionRequirements> result = new ArrayList<>();
+
+        for(int i = 0; i < requirementsCount; i++){
+            MissionRequirements req = new MissionRequirements();
+            req.setMission(mission);
+            req.setBuildingType(types.get(i));
+            req.setRequiredCount(random(1,5));
+            result.add(req);
+        }
+        return result;
+    }
+
+    private int random(int min, int max){
+        return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
 }

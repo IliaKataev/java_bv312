@@ -20,6 +20,11 @@ public class Mission {
     private int rewardCubes;
     private int rewardMaxBuildings;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnoreProperties("missions")
+    private User user;
+
     @OneToMany(mappedBy = "mission", fetch = FetchType.EAGER)
     @JsonIgnoreProperties("mission")
     private List<MissionRequirements> requirementsList;
