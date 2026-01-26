@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ebc2232f-eaca-4390-9f53-42ffb247526d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../notification-service/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../notification-service/.idea/amplicode-jpa.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../notification-service/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../notification-service/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../notification-service/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../notification-service/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../notification-service/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../notification-service/src/main/java/com/example/notification_service/NotificationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled2/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled2/src/main/java/com/example/untitled/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled2/src/main/java/com/example/untitled/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LegoCity/src/main/resources/ТЗ.md" beforeDir="false" afterPath="$PROJECT_DIR$/../LegoCity/src/main/resources/ТЗ.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "IliaKataev"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/IliaKataev/java_bv312",
+    "accountId": "3986e3db-5672-4ed0-9781-0d1ba7bf4d41"
+  }
+}]]></component>
+  <component name="GradleModuleStateConfig" initialized="true" />
+  <component name="OpenIdeProjectLocalState">
+    <option name="firstOpen" value="false" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="38nlUi33FJPRww5czKzfwHreawj" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ebc2232f-eaca-4390-9f53-42ffb247526d" name="Changes" comment="" />
+      <created>1769443233540</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1769443233540</updated>
+    </task>
+    <servers />
+  </component>
+</project>
